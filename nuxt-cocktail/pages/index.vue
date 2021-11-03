@@ -1,9 +1,28 @@
 <template>
-  <Tutorial/>
+  <div home-page>
+    <DrinkItem v-for="drink in drinkList" :key="drink" />
+  </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
+import DrinkItem from '@/components/home/DrinkItem'
+import { getDrinkList } from '@/api'
 
-export default Vue.extend({})
+
+export default {
+  name: 'HomePage',
+  components: {DrinkItem},
+  data() {
+    return {
+      drinkList: [1,2,3],
+    }
+  },
+  mounted() {
+    console.log(getDrinkList());
+  },
+}
 </script>
+
+<style lang="sass" scoped>
+
+</style>
