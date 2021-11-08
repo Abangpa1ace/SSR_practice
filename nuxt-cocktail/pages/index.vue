@@ -31,7 +31,7 @@ export default {
   ul.drink-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 30px 15px;
     width: 800px;
     margin: 50px auto;
   }
