@@ -20,12 +20,8 @@ export default {
     }
   },
   async mounted() {
-<<<<<<< HEAD
-    console.log(await getDrinkList());
-=======
     const res = await getDrinkListByInitial('m');
     this.drinkList = res.data.drinks;
->>>>>>> 3e468f5dd0a04d742280d302e542bd950c2b7b7a
   },
 }
 </script>
