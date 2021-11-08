@@ -18,3 +18,7 @@ const api = {
 export const getDrinkListByInitial = (char: string) => {
   return api.get('/search', {f: char});
 }
+
+export const getDrinkDetail = (id: number) => {
+  return api.get('/lookup', {i: id})
+}

@@ -2,7 +2,8 @@
   <div home-page>
     <h2 class="title">Cocktail</h2>
     <ul class="drink-list">
-      <DrinkItem v-for="(drink,idx) in drinkList" :key="`drink-${idx}`" :drink="drink" />
+      <DrinkItem v-for="(drink,idx) in drinkList" :key="`drink-${idx}`" 
+        :drink="drink" @click="goToDrinkDetail(drink.idDrink)" />
     </ul>
   </div>
 </template>
@@ -17,6 +18,11 @@ export default {
   data() {
     return {
       drinkList: [],
+    }
+  },
+  methods: {
+    goToDrinkDetail(id) {
+      this.$router.push(`/detail/${id}`)
     }
   },
   async mounted() {
