@@ -17,8 +17,8 @@ export default {
       drinkList: [1,2,3],
     }
   },
-  mounted() {
-    console.log(getDrinkList());
+  async mounted() {
+    console.log(await getDrinkList());
   },
 }
 </script>
