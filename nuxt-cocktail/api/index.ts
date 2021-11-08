@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const URL = 'https://www.thecocktaildb.com/api/json/v1/1';
+const URL = 'https://www.thecocktaildb.com/api/json/v1/1/';
+const URL2 = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a';
 
 const makeQuery = (query?: object): string | undefined => {
   if (query) {
@@ -16,4 +17,8 @@ const api = {
 
 export const getDrinkListByInitial = (char: string) => {
   return api.get('/search', {f: char});
+}
+
+export const getDrinkDetail = (id: number) => {
+  return api.get('/lookup', {i: id})
 }

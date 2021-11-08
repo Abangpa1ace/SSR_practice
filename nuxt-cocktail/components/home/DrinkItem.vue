@@ -1,9 +1,14 @@
 <template>
-  <div drink-item>
+  <div drink-item @click="$emit('click')">
     <img :src="imgsrc" alt="drink-img" class="item-img" />
-    <div class="item-content">
-      <p class="name">{{ drink.strDrink }}</p>
-    </div>
+    <p class="item-name">{{ drink.strDrink }}</p>
+    <ul class="item-content">
+      <li v-for="(value,key) in descList" :key="key">
+        <p>
+          <h4>{{key}}</h4>{{value}}
+        </p>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -19,9 +24,9 @@ export default {
     },
     descList() {
       return {
-        category,
-        alcoholic,
-        glass,
+        Category: this.drink.strCategory,
+        Alcoholic: this.drink.strAlcoholic,
+        Glass: this.drink.strGlass,
       }
     }
   },
@@ -30,11 +35,16 @@ export default {
 
 <style lang="scss">
 [drink-item] {
-  background-color: #F4ECE4;
-  border: 1px solid rgba(0,0,0,.2);
+  background-color: #E7D8C4;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
+  transition: transform .3s ease;
+
+  &:hover {
+    transform: translate(-1px,-1px);
+    box-shadow: 1px 1px 3px 1px #c4c4c4;
+  }
 
   .item-img {
     width: 100%;
@@ -48,6 +58,29 @@ export default {
       color: #fff;
       background-color: #C2AC9E;
       text-align: center;
+    }
+  }
+
+  .item-name {
+    margin: 10px 0 0;
+    padding: 5px 0;
+    background-color: #C3AC9D;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .item-content {
+    padding: 15px 10px;
+    font-size: 15px;
+
+    li {
+      margin: 3px 0 0;
+
+      h4 { 
+        display: inline-block;
+        margin: 0 5px 0 0;
+      }
     }
   }
 }
