@@ -1,6 +1,5 @@
 <template>
   <div home-page>
-    <h2 class="title">Cocktail</h2>
     <ul class="drink-list">
       <DrinkItem v-for="(drink,idx) in drinkList" :key="`drink-${idx}`" 
         :drink="drink"/>
@@ -20,9 +19,13 @@ export default {
       drinkList: [],
     }
   },
-  async mounted() {
+  // async mounted() {
+  //   const res = await getDrinkListByInitial('c');
+  //   this.drinkList = res.data.drinks;
+  // },
+  async asyncData() {
     const res = await getDrinkListByInitial('c');
-    this.drinkList = res.data.drinks;
+    return { drinkList: res.data.drinks }
   },
 }
 </script>
@@ -34,7 +37,7 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px 15px;
     width: 800px;
-    margin: 50px auto;
+    margin: 0 auto;
   }
 }
 </style>
