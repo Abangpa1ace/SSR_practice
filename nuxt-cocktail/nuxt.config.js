@@ -38,11 +38,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios',
   ],
-  axios: {
-    baseURL: 'https://www.thecocktaildb.com/api/json/v1/1',
-  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
