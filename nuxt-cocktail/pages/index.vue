@@ -1,5 +1,6 @@
 <template>
   <div home-page>
+    <ViewedDrinkList />
     <ul class="drink-list">
       <DrinkItem v-for="(drink,idx) in drinkList" :key="`drink-${idx}`" 
         :drink="drink"/>
@@ -8,12 +9,13 @@
 </template>
 
 <script>
+import ViewedDrinkList from '@/components/home/ViewedDrinkList'
 import DrinkItem from '@/components/home/DrinkItem'
 import { getDrinkListByInitial } from '@/api'
 
 export default {
   name: 'HomePage',
-  components: {DrinkItem},
+  components: {DrinkItem, ViewedDrinkList},
   data() {
     return {
       drinkList: [],
@@ -38,6 +40,12 @@ export default {
     gap: 30px 15px;
     width: 800px;
     margin: 0 auto;
+  }
+
+  [viewed-drink-list] {
+    position: fixed;
+    right: 60px;
+    bottom: 60px;
   }
 }
 </style>
