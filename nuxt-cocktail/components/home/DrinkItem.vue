@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link drink-item :to="`/detail/${drink.idDrink}`">
+  <li drink-item @click="$emit('click')">
     <img :src="imgsrc" alt="drink-img" class="item-img" />
     <p class="item-name">{{ drink.strDrink }}</p>
     <ul class="item-content">
@@ -9,7 +9,7 @@
         </p>
       </li>
     </ul>
-  </nuxt-link>
+  </li>
 </template>
 
 <script>

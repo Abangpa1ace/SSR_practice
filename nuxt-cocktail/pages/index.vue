@@ -3,12 +3,13 @@
     <ViewedDrinkList />
     <ul class="drink-list">
       <DrinkItem v-for="(drink,idx) in drinkList" :key="`drink-${idx}`" 
-        :drink="drink"/>
+        :drink="drink" @click="goToDetail(drink)" />
     </ul>
   </div>
 </template>
 
 <script>
+import {mapMutations} from 'vuex';
 import ViewedDrinkList from '@/components/home/ViewedDrinkList'
 import DrinkItem from '@/components/home/DrinkItem'
 import { getDrinkListByInitial } from '@/api'
@@ -21,10 +22,15 @@ export default {
       drinkList: [],
     }
   },
-  // async mounted() {
-  //   const res = await getDrinkListByInitial('c');
-  //   this.drinkList = res.data.drinks;
-  // },
+  methods: {
+    ...mapMutations({
+      setViewedList: 'drink/setViewedList',
+    }),
+    goToDetail(drink) {
+      this.setViewedList(drink);
+      this.$router.push(`/detail/${drink.idDrink}`)
+    },
+  },
   async asyncData() {
     const res = await getDrinkListByInitial('c');
     return { drinkList: res.data.drinks }
@@ -44,8 +50,9 @@ export default {
 
   [viewed-drink-list] {
     position: fixed;
-    right: 60px;
-    bottom: 60px;
+    right: 25px;
+    top: 110px;
+    z-index: 1000;
   }
 }
 </style>
