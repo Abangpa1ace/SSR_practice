@@ -31,6 +31,11 @@ export default {
       this.$router.push(`/detail/${drink.idDrink}`)
     },
   },
+  async fetch({ store }) {
+    const res = await getDrinkListByInitial('a');
+    console.log('taeng2', res.data);
+    store.commit('drink/setTestList', res.data.drinks);
+  },
   async asyncData() {
     const res = await getDrinkListByInitial('c');
     return { drinkList: res.data.drinks }
