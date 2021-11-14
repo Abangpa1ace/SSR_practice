@@ -42,9 +42,18 @@ import { getDrinkDetail } from '@/api'
 
 export default {
   name: 'DetailPage',
+  middleware: 'superGreat',
   data() {
     return {
       detailInfo: {},
+    }
+  },
+  head() {
+    return {
+      title: `${this.detailInfo.strDrink}의 상세정보!`,
+      meta: [
+        {hid: '칵태일', name: '칵테일 상세', content: '칵테일 상세정보를 보여줍니다.'},
+      ],
     }
   },
   computed: {
@@ -69,13 +78,13 @@ export default {
       return list;
     },
   },
-  async asyncData({ params }) {
+  async asyncData({ app, params }) {
     const { id } = params;
     const res = await getDrinkDetail(id);
     return { detailInfo: res.data.drinks[0] };
   },
-  validate ({ params }) {
-    return +params.id > 12000;
+  validate ({ app, params }) {
+    return app.$isGreater(+params.id);
   }
 }
 </script>

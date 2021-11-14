@@ -1,7 +1,10 @@
 import Vue from 'vue';
+import { Plugin } from '@nuxt/types';
 
-export default ({ app }, inject) => {
-  inject('$isGreater', (id: number): boolean => {
-    return id > 15000;
+const greaterPlugins: Plugin =  (context, inject: any) => {
+  inject('isGreater', (id: number): boolean => {
+    return id > 12000;
   })
 }
+
+export default greaterPlugins;

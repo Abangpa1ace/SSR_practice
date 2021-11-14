@@ -1,5 +1,6 @@
 <template>
   <div home-page>
+    <Loader />
     <ViewedDrinkList />
     <ul class="drink-list">
       <DrinkItem
@@ -16,11 +17,12 @@
 import { mapMutations } from "vuex";
 import ViewedDrinkList from "@/components/home/ViewedDrinkList";
 import DrinkItem from "@/components/home/DrinkItem";
+import Loader from "@/components/common/Loader";
 import { getDrinkListByInitial } from "@/api";
 
 export default {
   name: "HomePage",
-  components: { DrinkItem, ViewedDrinkList },
+  components: { Loader, DrinkItem, ViewedDrinkList },
   data() {
     return {
       drinkList: [],
@@ -35,12 +37,8 @@ export default {
       this.$router.push(`/detail/${drink.idDrink}`);
     },
   },
-  mounted() {
-    console.log("taeng22", this.$isGreater(15001));
-  },
   async fetch({ store }) {
     const res = await getDrinkListByInitial("a");
-    console.log("taeng2", res.data);
     store.commit("drink/setTestList", res.data.drinks);
   },
   async asyncData() {

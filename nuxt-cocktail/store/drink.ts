@@ -1,3 +1,5 @@
+import {MutationTree} from 'vuex';
+
 interface State {
   viewedList: object[] | never[];
   testList: object[] | never[];
@@ -8,7 +10,7 @@ export const state = () => ({
   testList: [],
 })
 
-export const mutations = {
+export const mutations: MutationTree<State> = {
   getViewedList(state: State) {
     const savedList = sessionStorage.getItem('viewedList');
     state.viewedList = savedList ? JSON.parse(savedList) : [];

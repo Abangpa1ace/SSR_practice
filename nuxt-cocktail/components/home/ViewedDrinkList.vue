@@ -1,18 +1,22 @@
 <template>
   <div viewed-drink-list v-if="viewedList.length">
-    <nuxt-link v-for="drink in viewedList" :key="drink.idDrink" 
-      :to="`/detail/${drink.idDrink}`" class="viewed-item">
+    <nuxt-link
+      v-for="(drink, idx) in viewedList"
+      :key="idx"
+      :to="`/detail/${drink.idDrink}`"
+      class="viewed-item"
+    >
       <img :src="drink.strDrinkThumb" alt="viewed-drink-img" />
-      <p>{{drink.strDrink}}</p>
+      <p>{{ drink.strDrink }}</p>
     </nuxt-link>
   </div>
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
+import { mapMutations } from "vuex";
 
 export default {
-  name: 'ViewedDrinkList',
+  name: "ViewedDrinkList",
   computed: {
     viewedList() {
       return this.$store.state.drink.viewedList;
@@ -20,13 +24,13 @@ export default {
   },
   methods: {
     ...mapMutations({
-      getViewedList: 'drink/getViewedList',
+      getViewedList: "drink/getViewedList",
     }),
   },
   mounted() {
     this.getViewedList();
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -34,7 +38,7 @@ export default {
   width: 120px;
   height: 450px;
   padding: 10px;
-  background: #788A85;
+  background: #788a85;
   border-radius: 4px;
   overflow-y: auto;
 
