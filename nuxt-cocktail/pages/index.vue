@@ -2,45 +2,52 @@
   <div home-page>
     <ViewedDrinkList />
     <ul class="drink-list">
-      <DrinkItem v-for="(drink,idx) in drinkList" :key="`drink-${idx}`" 
-        :drink="drink" @click="goToDetail(drink)" />
+      <DrinkItem
+        v-for="(drink, idx) in drinkList"
+        :key="`drink-${idx}`"
+        :drink="drink"
+        @click="goToDetail(drink)"
+      />
     </ul>
   </div>
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
-import ViewedDrinkList from '@/components/home/ViewedDrinkList'
-import DrinkItem from '@/components/home/DrinkItem'
-import { getDrinkListByInitial } from '@/api'
+import { mapMutations } from "vuex";
+import ViewedDrinkList from "@/components/home/ViewedDrinkList";
+import DrinkItem from "@/components/home/DrinkItem";
+import { getDrinkListByInitial } from "@/api";
 
 export default {
-  name: 'HomePage',
-  components: {DrinkItem, ViewedDrinkList},
+  name: "HomePage",
+  components: { DrinkItem, ViewedDrinkList },
   data() {
     return {
       drinkList: [],
-    }
+    };
   },
   methods: {
     ...mapMutations({
-      setViewedList: 'drink/setViewedList',
+      setViewedList: "drink/setViewedList",
     }),
     goToDetail(drink) {
       this.setViewedList(drink);
-      this.$router.push(`/detail/${drink.idDrink}`)
+      this.$router.push(`/detail/${drink.idDrink}`);
     },
   },
+  mounted() {
+    console.log("taeng22", this.$isGreater(15001));
+  },
   async fetch({ store }) {
-    const res = await getDrinkListByInitial('a');
-    console.log('taeng2', res.data);
-    store.commit('drink/setTestList', res.data.drinks);
+    const res = await getDrinkListByInitial("a");
+    console.log("taeng2", res.data);
+    store.commit("drink/setTestList", res.data.drinks);
   },
   async asyncData() {
-    const res = await getDrinkListByInitial('c');
-    return { drinkList: res.data.drinks }
+    const res = await getDrinkListByInitial("c");
+    return { drinkList: res.data.drinks };
   },
-}
+};
 </script>
 
 <style lang="scss">

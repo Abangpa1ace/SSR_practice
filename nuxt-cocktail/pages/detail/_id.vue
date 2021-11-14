@@ -69,15 +69,13 @@ export default {
       return list;
     },
   },
-  // async mounted() {
-  //   const idDrink = this.$route.params?.id;
-  //   const res = await getDrinkDetail(idDrink);
-  //   this.detailInfo = res.data.drinks[0];
-  // },
   async asyncData({ params }) {
     const { id } = params;
     const res = await getDrinkDetail(id);
     return { detailInfo: res.data.drinks[0] };
+  },
+  validate ({ params }) {
+    return +params.id > 12000;
   }
 }
 </script>
